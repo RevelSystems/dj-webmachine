@@ -15,6 +15,11 @@ TOKEN_TYPES, PENDING, CONSUMER_STATES
 
 from webmachine.managers import ConsumerManager, TokenManager
 
+
+def generate_time():
+    return time.time()
+
+
 def generate_random(length=SECRET_SIZE):
     return User.objects.make_random_password(length=length)
 
@@ -41,6 +46,7 @@ class Consumer(models.Model):
 
         return urllib.urlencode(data)
 
+
 class Token(models.Model):
     key = models.CharField(max_length=KEY_SIZE)
     secret = models.CharField(max_length=SECRET_SIZE)
@@ -50,7 +56,7 @@ class Token(models.Model):
     verifier = models.CharField(max_length=VERIFIER_SIZE)
     consumer = models.ForeignKey(Consumer,
             related_name="tokens_consumer")
-    timestamp = models.IntegerField(default=time.time())
+    timestamp = models.IntegerField(default=generate_time)
     user = models.ForeignKey(User, null=True, blank=True, 
             related_name="tokens_user")
     is_approved = models.BooleanField(default=False)
