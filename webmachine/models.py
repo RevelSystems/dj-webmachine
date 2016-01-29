@@ -50,7 +50,7 @@ class Token(models.Model):
     verifier = models.CharField(max_length=VERIFIER_SIZE)
     consumer = models.ForeignKey(Consumer,
             related_name="tokens_consumer")
-    timestamp = models.IntegerField(default=time.time())
+    timestamp = models.IntegerField()
     user = models.ForeignKey(User, null=True, blank=True, 
             related_name="tokens_user")
     is_approved = models.BooleanField(default=False)

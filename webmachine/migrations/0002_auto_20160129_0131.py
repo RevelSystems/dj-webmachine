@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='token',
             name='timestamp',
-            field=models.IntegerField(default=1454057686.425424),
+            field=models.IntegerField(),
         ),
     ]
