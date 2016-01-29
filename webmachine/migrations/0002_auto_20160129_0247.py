@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import webmachine.models
 
 
 class Migration(migrations.Migration):
@@ -14,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='token',
             name='timestamp',
-            field=models.IntegerField(),
+            field=models.IntegerField(default=webmachine.models.generate_time),
         ),
     ]
